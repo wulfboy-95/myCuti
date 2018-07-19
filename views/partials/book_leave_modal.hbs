@@ -15,18 +15,34 @@
             <select class="form-control" id="employee" name="user">
               {{#each logged_user.supervised_users}}
               <option value="{{@index}}" {{# if_equal this.id ../logged_user.id }}selected="selected"{{/if_equal}}>{{this.full_name}}</option>
-              {{/each}}
+			  {{/each}}
             </select>
           </div>
           {{/if_equal}}
 
           <div class="form-group">
+          	<script type="text/javascript">
+            	function showhide() {
+            		var e = document.getElementById("leave_type");
+					if (e.options[e.selectedIndex].text == "Other") {
+						document.getElementById("label_reason").style.display = "inherit";
+						document.getElementById("reason").style.display = "inherit";
+					} else {
+						document.getElementById("label_reason").style.display = "none";
+						document.getElementById("reason").style.display = "none";
+					}
+            	}
+            </script>
             <label for="leave_type" class="control-label">Leave type:</label>
-            <select class="form-control" id="leave_type" name="leave_type">
+            <select class="form-control" id="leave_type" name="leave_type" onclick="showhide();">
             {{# each logged_user.company.leave_types}}
                 <option value={{@index}} data-tom="{{this.name}}">{{this.name}}</option>
             {{/each}}
             </select>
+			
+			<label for="reason" class="control-label" id="label_reason" style="display:none;">Please Specify:</label>
+			<input type="text" class="form-control" id="reason" name="reason" style="display:none"></input>
+			
           </div>
 
           <div class="form-group">

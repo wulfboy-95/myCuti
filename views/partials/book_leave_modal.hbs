@@ -2,7 +2,7 @@
 <div class="modal fade" id="{{container_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-    <form method="POST" action="{{leave_modal_form_action}}">
+    <form method="POST" action="{{leave_modal_form_action}}" enctype="multipart/form-data">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="exampleModalLabel">New absence</h4>
@@ -24,27 +24,31 @@
           	<script type="text/javascript">
             	function showhide() {
             		var e = document.getElementById("leave_type");
-					if (e.options[e.selectedIndex].text == "Other") {
-						document.getElementById("label_reason").style.display = "inherit";
-						document.getElementById("reason").style.display = "inherit";
-					} else {
-						document.getElementById("label_reason").style.display = "none";
-						document.getElementById("reason").style.display = "none";
-					}
+                if (e.options[e.selectedIndex].text == "Other") {
+                document.getElementById("label_reason").style.display = "inherit";
+                document.getElementById("reason").style.display = "inherit";
+                } else {
+                document.getElementById("label_reason").style.display = "none";
+                document.getElementById("reason").style.display = "none";
+                }
             	}
             </script>
             <label for="leave_type" class="control-label">Leave type:</label>
             <select class="form-control" id="leave_type" name="leave_type" onclick="showhide();">
-            {{# each logged_user.company.leave_types}}
-                <option value={{@index}} data-tom="{{this.name}}">{{this.name}}</option>
-            {{/each}}
+              {{# each logged_user.company.leave_types}}
+                  <option value={{@index}} data-tom="{{this.name}}">{{this.name}}</option>
+              {{/each}}
             </select>
 			
-			<label for="reason" class="control-label" id="label_reason" style="display:none;">Please Specify:</label>
-			<input type="text" class="form-control" id="reason" name="reason" style="display:none"></input>
-			
+            <label for="reason" class="control-label" id="label_reason" style="display:none;">Please Specify:</label>
+            <input type="text" class="form-control" id="reason" name="reason" style="display:none"></input>
           </div>
 
+          <div class="form-group">
+            <label for="attachment-inp" class="control-label">Attachment:</label>
+            <input type="file" class="form-control-file" id="attachment-inp" name="attachment"></input>
+          </div>
+          
           <div class="form-group">
             <label for="from" class="control-label">From:</label>
             <div class="row">

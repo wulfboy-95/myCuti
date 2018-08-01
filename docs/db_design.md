@@ -1,6 +1,6 @@
-To have nice visualisation of database schema use this tool http://ondras.zarovi.cz/sql/demo/ and feed XML below.
+### To have nice visualization of database schema use this tool http://ondras.zarovi.cz/sql/demo/ and feed XML below.
 
-
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
 <!-- Active URL: http://ondras.zarovi.cz/sql/demo/ -->
@@ -216,3 +216,4 @@ To have nice visualisation of database schema use this tool http://ondras.zarovi
 </key>
 </table>
 </sql>
+```

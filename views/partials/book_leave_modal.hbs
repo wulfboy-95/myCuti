@@ -92,7 +92,7 @@
           <div class="form_group">
             <div class="row">
               <div class="col-md-5">
-                <label for="from" class="control-label">Duty Replacer</label>
+                <label for="select_replacer" class="control-label">Duty Replacer</label>
                 <select class="form-control" id="select_replacer" name="replacer">
                   {{#each logged_user.supervised_users}}
                   <option value="{{@index}}" {{# if_equal this.id ../logged_user.id }}{{# if_equal this.id employee}}
@@ -103,8 +103,8 @@
                 </select>
               </div>
               <div class = "col-md-7">
-                <label class="control-label">Duty</label>
-                <input type="text" class="form-control" id="duty" name="duty" required value="{{supervised_users.duty}}">
+                <label for="duty" class="control-label">Duty</label>
+                <input type="text" class="form-control" id="duty" name="duty_detail">
               </div>
             </div>
           </div>

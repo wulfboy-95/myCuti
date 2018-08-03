@@ -88,6 +88,26 @@
             <label for="attachment-inp" class="control-label">Attachment:</label>
             <input type="file" class="form-control-file" id="attachment-inp" name="attachment"></input>
           </div>
+          
+          <div class="form_group">
+            <div class="row">
+              <div class="col-md-5">
+                <label for="from" class="control-label">Duty Replacer</label>
+                <select class="form-control" id="select_replacer" name="replacer">
+                  {{#each logged_user.supervised_users}}
+                  <option value="{{@index}}" {{# if_equal this.id ../logged_user.id }}{{# if_equal this.id employee}}
+                  selected="selected"
+                  {{/if_equal}}
+                  {{/if_equal}}>{{this.full_name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class = "col-md-7">
+                <label class="control-label">Duty</label>
+                <input type="text" class="form-control" id="duty" name="duty" required value="{{supervised_users.duty}}">
+              </div>
+            </div>
+          </div>
 
       </div>
       <div class="modal-footer">

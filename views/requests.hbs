@@ -26,9 +26,9 @@
           <th>Date of request</th>
           <th>Leave dates</th>
           <th>Type</th>
-          <th>Reason</th>
           <th>Days</th>
-          <th>Attachment</th>
+          <th>Duty Replacement</th>
+          <th><i class="fa fa-paperclip"></i> Attachment</th>
           <th colspan="2"></th>
         </tr>
       </thead>
@@ -39,11 +39,11 @@
           <td>{{this.user.department.name}}</td>
           <td class="date_of_request">{{as_date_from_timestamp this.createdAt}}</td>
           <td data-tom-leave-dates="1">{{> leave_dates leave=this}}</td>
-          <td>{{#if this.is_pended_revoke_leave}}REVOKE {{/if}}{{this.leave_type.name}}</td>
-          <td>{{this.employee_comment}}</td>
+          <td>{{#if this.is_pended_revoke_leave}}REVOKE {{/if}}{{this.leave_type.name}}{{#if this.employee_comment}}:<br>{{this.employee_comment}}{{/if}}</td>
           <td data-vpp="days_used">{{ this.get_deducted_days_number }}</td>
+          <!-- todo: method to get user by id -->
+          <td>{{#if this.duty_replacer}}{{this.duty_replacer}}<br>{{this.duty_detail}}{{/if}}</td>
           <td>
-          <!-- must show no attachment message when no attachment -->
             <form action="/requests/reqdownload/" method="post">
               <input type="hidden" value="{{this.id}}" name="request">
               <button type="submit" class="btn btn-default btn-xs" title="Download file attachment" {{#unless this.attachment}}disabled{{/unless}}>

@@ -92,13 +92,11 @@
           <div class="form_group">
             <div class="row">
               <div class="col-md-5">
-                <label for="select_replacer" class="control-label">Duty Replacer</label>
-                <select class="form-control" id="select_replacer" name="replacer">
+                <label for="select-replacer" class="control-label">Duty Replacer</label>
+                <select class="form-control" id="select-replacer" name="replacer">
+                  <option>None</option>
                   {{#each logged_user.supervised_users}}
-                  <option value="{{@index}}" {{# if_equal this.id ../logged_user.id }}{{# if_equal this.id employee}}
-                  selected="selected"
-                  {{/if_equal}}
-                  {{/if_equal}}>{{this.full_name}}</option>
+                  <option value={{@index}}>{{this.full_name}}</option>
                   {{/each}}
                 </select>
               </div>

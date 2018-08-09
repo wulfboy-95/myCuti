@@ -31,7 +31,7 @@
         <td>{{ this.leave_type.name }}{{#if this.is_pended_revoke_leave}}<br>(pended revoke){{/if}}{{#if this.employee_comment}}:<br>{{this.employee_comment}}{{/if}}</td>
         <td>{{ this.get_deducted_days_number }}</td>
         <td class="user-request-table-approver">{{#with this.approver}}{{this.full_name}}{{/with}}</td>
-        <td>{{#if this.duty_replacer}}{{this.duty_replacer}}<br>{{this.duty_detail}}{{/if}}</td>
+        <td>{{#with this.replacer}}{{this.full_name}}{{/with}}<br>{{this.duty_detail}}</td>
         <td>
           {{# if this.attachment}}
           <form method="post" action="/requests/usrdownload/">

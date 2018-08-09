@@ -28,7 +28,7 @@
           <th>Type</th>
           <th>Days</th>
           <th>Duty Replacement</th>
-          <th><i class="fa fa-paperclip"></i> Attachment</th>
+          <th>Attachment</th>
           <th colspan="2"></th>
         </tr>
       </thead>
@@ -41,8 +41,7 @@
           <td data-tom-leave-dates="1">{{> leave_dates leave=this}}</td>
           <td>{{#if this.is_pended_revoke_leave}}REVOKE {{/if}}{{this.leave_type.name}}{{#if this.employee_comment}}:<br>{{this.employee_comment}}{{/if}}</td>
           <td data-vpp="days_used">{{ this.get_deducted_days_number }}</td>
-          <!-- todo: method to get user by id -->
-          <td>{{#if this.duty_replacer}}{{this.duty_replacer}}<br>{{this.duty_detail}}{{/if}}</td>
+          <td>{{#if this.replacer}}{{#with this.replacer}}{{this.full_name}}{{/with}}<br>{{this.duty_detail}}{{/if}}</td>
           <td>
             <form action="/requests/reqdownload/" method="post">
               <input type="hidden" value="{{this.id}}" name="request">

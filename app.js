@@ -6,6 +6,7 @@ var logger       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var moment       = require('moment');
+var _            = require('underscore');
 
 var app = express();
 
@@ -66,7 +67,7 @@ app.use(function(req,res,next){
   } else {
     today = moment.utc();
   }
-
+  req.user.reload_with_coworker_details();
   res.locals.session     = req.session;
   res.locals.logged_user = req.user;
   res.locals.url_to_the_site_root = '/';
@@ -74,7 +75,6 @@ app.use(function(req,res,next){
   // For book leave request modal
   res.locals.booking_start = today,
   res.locals.booking_end = today,
-
   next();
 });
 

@@ -96,7 +96,7 @@
                 <select class="form-control" id="select-replacer" name="replacer">
                   <option value="0">None</option>
                   {{#each logged_user.coworkers}}
-                  <option value={{this.id}}>{{this.full_name}}</option>
+                  <option value={{this.id}}>{{this.name}} {{this.lastname}}</option>
                   {{/each}}
                 </select>
               </div>

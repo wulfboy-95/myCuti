@@ -69,7 +69,7 @@ app.use(function(req,res,next){
   }
   
   res.locals.session     = req.session;
-  req.user.reload_with_coworker_details();
+  if (req.user) req.user.reload_with_coworker_details();
   res.locals.logged_user = req.user;
   res.locals.url_to_the_site_root = '/';
   res.locals.requested_path = req.originalUrl;

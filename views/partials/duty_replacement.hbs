@@ -1,0 +1,58 @@
+{{!--
+duty_replacement.hbs
+todos:
+1. Database table for storing duty replacements
+or
+Database retrieval of leaves with duty replacements.
+2. Code for Confirmation/Denial methods.
+3. Duty replacement status.
+--}}
+
+<div class="row">
+  {{# unless duty }}
+  <div class="col-md-12 text-muted">There are no replacement duties.</div>
+  {{else}}
+  <div class="col-md-12 text-muted">
+    <p class="visible-xs-block"><em class="text-muted">Scroll table horizontally</em></p>
+    <div class="table-responsive">
+      <table class="table table-hover user-requests-table">
+        <thead>
+          <tr>
+            <th>For </th>
+            <th>Dates (from <i class="fa fa-long-arrow-right"></i> to)</th>
+            <th>Specification</th>
+            <th colspan="2"></th>
+            <th><span class="pull-right">Status</span></th>
+          </tr>
+        </thead>
+        <tbody>
+        {{# each duty }}
+          <tr>
+            <td>{{#with this.user}}{{this.full_name}}{{/with}}</td>
+            <td>{{> leave_dates leave=this}}</td>
+            <td>{{this.duty_detail}}</td>
+            <td>
+              {{#if this.is_duty_unconfirmed }}
+              <form method="post" action="/requests/dutydeny/">
+                <input class="btn btn-warning" type="submit" value="Deny">
+                <input type="hidden" value="{{this.id}}" name="duty">
+              </form>
+            </td>
+            <td>
+              <form method="post" action="/requests/dutyconfirm/">
+                <input class="btn btn-success" type="submit" value="Confirm">
+                <input type="hidden" value="{{this.id}}" name="duty">
+              </form>
+              {{else}}
+              <td></td><td></td>
+              {{/if}}
+            </td>
+            <td><span class="pull-right">{{#if this.is_duty_unconfirmed}}Unconfirmed{{/if}}{{#if this.is_duty_confirmed}}Confirmed{{/if}}{{#if this.is_duty_denied}}Denied{{/if}}</span></td>
+          </tr>
+        {{/ each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {{/unless}}
+</div>

@@ -64,20 +64,80 @@
         <span id="department_help" class="help-block col-md-6">Department employee belongs to</span>
       </div>
       
-	  <div class="form-group">
-	    <label for="position_inp" class="col-md-3 control-label">Position</label>
-      <div class="col-md-3">
-        <input class="form-control" id="position_inp" name="position" value="{{employee.position}}">
+      <div class="form-group">
+        <label for="position_inp" class="col-md-3 control-label">Position</label>
+        <div class="col-md-3">
+          <input class="form-control" id="position_inp" name="position" value="{{employee.position}}">
+        </div>
       </div>
-	  </div>
-	  
-	  <div class="form-group">
-	    <label for="staff_no_imp" class="col-md-3 control-label">Staff No.</label>
-		<div class="col-md-3">
-		  <input class="form-control" id="staff_no_input" name="staff_no" value="{{employee.staff_no}}">
-		</div>
-	  </div>
-	  
+      
+      <div class="form-group">
+        <label for="staff_no_imp" class="col-md-3 control-label">Staff No.</label>
+        <div class="col-md-3">
+          <input class="form-control" id="staff_no_input" name="staff_no" value="{{employee.staff_no}}">
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <label for="address_ln1" class="col-md-3 control-label">Address 1</label>
+        <div class="col-md-3 date">
+          <input class="form-control" id="address_ln1" type="text" onchange="genAddress();">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="address_ln2" class="col-md-3 control-label">Address 2</label>
+        <div class="col-md-3 date">
+          <input class="form-control" id="address_ln2" type="text" onchange="genAddress();">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="postcode" class="col-md-3 control-label">Postcode</label>
+        <div class="col-md-3 date">
+          <input class="form-control" id="postcode" type="text" onchange="genAddress();">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="city" class="col-md-3 control-label">City</label>
+        <div class="col-md-3 date">
+          <input class="form-control" id="city" type="text" onchange="genAddress();">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="state" class="col-md-3 control-label">State</label>
+        <div class="col-md-3 date">
+          <input class="form-control" id="state" type="text" onchange="genAddress();">
+        </div>
+      </div>
+      
+      <input type="hidden" id="address-inp" name="address">
+
+      <script>
+        function genAddress() {
+          var line1 = document.getElementById("address_ln1").value;
+          var line2 = document.getElementById("address_ln2").value;
+          var postcode = document.getElementById("postcode").value;
+          var city = document.getElementById("city").value;
+          var state = document.getElementById("state").value;
+          var addr_array = new Array(line1, line2, postcode, city, state);
+          document.getElementById("address-inp").value = addr_array.join("\n");
+        }
+      </script>
+
+      <br>
+
+      <div class="form-group">
+        <label for="tel_no_inp" class="col-md-3 control-label">Telephone Number</label>
+        <div class="col-md-3 date">
+          <input class="form-control" id="tel_no_inp" name="tel_no" type="tel">
+        </div>
+      </div>
+
       <div class="form-group">
         <div class="col-md-3 col-md-offset-3">
           <label for="admin_inp" class="_col-md-2 control-label">

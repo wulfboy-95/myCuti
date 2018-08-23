@@ -17,6 +17,7 @@
         </thead>
         <tbody>
         {{# each duty }}
+        {{# if_equal logged_user.id this.user.id}}
           <tr>
             <td>{{#with this.user}}{{this.full_name}}{{/with}}</td>
             <td>{{> leave_dates leave=this}}</td>
@@ -39,6 +40,7 @@
             </td>
             <td><span class="pull-right">{{#if this.is_duty_unconfirmed}}Unconfirmed{{/if}}{{#if this.is_duty_confirmed}}Confirmed{{/if}}{{#if this.is_duty_denied}}Denied{{/if}}</span></td>
           </tr>
+        {{/if_equal}}
         {{/ each}}
         </tbody>
       </table>

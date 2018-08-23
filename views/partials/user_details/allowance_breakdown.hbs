@@ -18,7 +18,7 @@
     ></i>
   </dt>
     <dd>
-      <em>Nominal allowance </em>
+      <em>Current year entitlement </em>
       <span class="pull-right"
         data-content="Allowance derived from department current user belongs to."
         data-placement="top"
@@ -27,9 +27,9 @@
       >{{ user_allowance.nominal_allowance }}</span>
     </dd>
     <dd>
-      <em>Carried over from {{previous_year}}</em>
+      <em>Balance from {{previous_year}}</em>
       <span class="pull-right"
-        data-content="Allowance carried over from previous year. Note: this amount is calculated on the very first day of the year."
+        data-content="Max of 7 days allowance carried over from previous year. Note: this amount is calculated on the very first day of the year."
         data-placement="top"
         data-toggle="popover"
         data-trigger="focus hover"
@@ -54,7 +54,7 @@
       >{{ user_allowance.employement_range_adjustment }}</span>
     </dd>
     <dd>
-      <em>Used so far</em>
+      <em>Leave taken</em>
       <span class="pull-right"
         data-content="Number of days already taken from allowance."
         data-placement="top"

@@ -1,0 +1,83 @@
+{{> header}}
+
+<h1>Edit {{logged_user.name}} {{logged_user.lastname}}'s Contact Details</h1>
+
+{{> show_flash_messages }}
+
+<div class="row main-row_header">
+  <p>Contact Details</p>
+</div>
+
+<div class="row">
+    <form method="POST" action="/contact/edit/">
+    
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="tel_no_inp" class="col-md-2 control-label">Tel. No</label>
+        <div class="col-md-3">
+          <input type="tel" class="form-control" id="tel_no_inp" name="tel_no" value="{{tel_no}}">
+          <br><br>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="address_ln1" class="col-md-2 control-label">Address 1</label>
+        <div class="col-md-10">
+          <input class="form-control" id="address_ln1" type="text" value="{{line_1}}" onchange="genAddress();">
+          <br>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="address_ln2" class="col-md-2 control-label">Address 2</label>
+        <div class="col-md-10">
+          <input class="form-control" id="address_ln2" type="text" value="{{line_2}}" onchange="genAddress();">
+          <br>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="postcode_inp" class="col-md-2 control-label">Postcode</label>
+        <div class="col-md-4">
+          <input class="form-control" id="postcode_inp" name="postcode" type="text" value="{{postcode}}" onchange="genAddress();">
+          <br>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="city_inp" class="col-md-2 control-label">City</label>
+        <div class="col-md-4">
+          <input class="form-control" id="city_inp" name="city" type="text" value="{{city}}" onchange="genAddress();">
+          <br>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="state_inp" class="col-md-2 control-label">State</label>
+        <div class="col-md-4">
+          <input class="form-control" id="state_inp" name="city" type="text" value="{{state}}" onchange="genAddress();">
+          <br>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" id="address_inp" name="address" value={{logged_user.address}}>
+
+    <script>
+      function genAddress() {
+        var line1 = document.getElementById("address_ln1").value;
+        var line2 = document.getElementById("address_ln2").value;
+        var postcode = document.getElementById("postcode_inp").value;
+        var city = document.getElementById("city_inp").value;
+        var state = document.getElementById("state_inp").value + ".";
+        var addr_array = new Array(line1, line2, postcode+", "+city, state);
+        document.getElementById("address_inp").value = addr_array.join(",\r\n");
+      }
+    </script>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>

@@ -33,13 +33,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
 // Setup authentication mechanism
 var passport = require('./lib/passport')();
 
 var session = require('express-session');
-// initalize sequelize with session store
+// initialize sequelize with session store
 var SequelizeStore = require('connect-session-sequelize')(session.Store);
 app.use(session({
     secret            : 'my dirty secret ;khjsdkjahsdajhasdam,nnsnad,',
@@ -51,8 +49,6 @@ app.use(session({
 }))
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 // Custom middlewares
 //
@@ -121,7 +117,7 @@ app.use(
   require('./lib/route/settings')
 );
 
-// '/settings/' path is quite big hence there are two modules providng handlers for it
+// '/settings/' path is quite big hence there are two modules providing handlers for it
 app.use(
   '/settings/',
   require('./lib/route/departments')
@@ -157,11 +153,10 @@ app.use(function(req, res, next) {
   res.render('not_found');
 });
 
-
 // error handlers
 
 // development error handler
-// will print stacktrace
+// will print stack trace
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
@@ -173,7 +168,7 @@ if (app.get('env') === 'development') {
 }
 
 // production error handler
-// no stacktraces leaked to user
+// no stack traces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {

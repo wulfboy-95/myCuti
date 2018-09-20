@@ -1,11 +1,7 @@
 
-# TimeOff.Management
+# myE-Leave
 
-Web application for managing employee absences.
-
-[![Stories in Ready](https://badge.waffle.io/timeoff-management/application.png?label=ready&title=Ready)](https://waffle.io/timeoff-management/application)
-
-<a href="https://travis-ci.org/timeoff-management/application"><img align="right" src="https://travis-ci.org/timeoff-management/application.svg?branch=master" alt="Build status" /></a>
+Web application for managing E-Leaves based on [TimeOff.Management](https://github.com/timeoff-management/application).
 
 ## Features
 
@@ -45,9 +41,9 @@ There are following types of users: employees, supervisors, and administrators.
 
 Optional LDAP authentication: configure application to use your LDAP server for user authentication.
 
-**Seamless data migration betweeen different installations**
+**Seamless data migration between different installations**
 
-User friendly and simple workflow for data migration between different TimeOff.Management installations.
+User friendly and simple workflow for data migration between different myE-Leave installations.
 
 Admin user can download the entire company data as a single JSON file and then restore the account at a different installation by simply uploading the JSON.
 
@@ -76,21 +72,15 @@ Optionally allow employees to see the time off information of entire company reg
 
 ## Installation
 
-### Cloud hosting
-
-Visit http://timeoff.management/
-
-Create company account and use cloud based version.
-
 ### Self hosting
 
-Install TimeOff.Management application within your infrastructure:
+Install myE-Leave web application within your infrastructure:
 
-(make sure you have Node.js (>=4.0.0) and SQLite installed)
+(make sure you have Node.js (>=6.0.0) and SQLite installed)
 
 ```bash
-git clone https://github.com/timeoff-management/application.git timeoff-management
-cd timeoff-management
+git clone https://github.com/wulfboy-95/myE-Leave.git myE-Leave
+cd myE-Leave
 npm install
 npm start
 ```
@@ -110,11 +100,11 @@ npm test
 
 (make sure that application with default settings is up and running)
 
-Any bug fixes or enhancements should have good test coverage to get them into "master" branch.
+~~Any bug fixes or enhancements should have good test coverage to get them into "master" branch.~~ Todo: add test coverage for new features.
 
 ## Updating existing instance with new code
 
-In case one needs to patch existing instance of TimeOff.Managenent application with new version:
+In case one needs to patch existing instance of myE-Leave application with new version:
 
 ```bash
 git fetch
@@ -126,5 +116,8 @@ npm start
 
 ## Feedback
 
-Please report any issues or feedback to <a href="https://twitter.com/FreeTimeOffApp">twitter</a> or Email: pavlo at timeoff.management
+todo
 
+## Special Thanks
+
+This project is a derivative of [TimeOff.Management](https://github.com/timeoff-management/application)

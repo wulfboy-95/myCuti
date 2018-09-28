@@ -14,13 +14,16 @@ var
   expect         = require('chai').expect,
   open_page_func = require('./open_page'),
   config         = require('./config'),
-  bluebird        = require("bluebird");
+  bluebird        = require("bluebird"),
+  webdriver = require('selenium-webdriver');
 
 module.exports = bluebird.promisify( function(args, callback){
 
   var
     result_callback = callback,
-    driver          = args.driver,
+    driver          = args.driver || new webdriver.Builder()
+      .withCapabilities(webdriver.Capabilities.phantomjs())
+      .build(),
     emails          = args.emails || [],
     is_link         = args.is_link || false,
     application_host = args.application_host || config.get_application_host();

@@ -8,9 +8,7 @@
 "use strict";
 
 module.exports = {
-  get_application_host : function(){
-    return "http://localhost:3000/";
-  },
+  get_application_host : () => "http://localhost:3000/",
 
   /*
    *  Default timeout each integration test needs to be completed in

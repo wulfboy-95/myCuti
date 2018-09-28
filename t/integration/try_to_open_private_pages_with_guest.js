@@ -68,7 +68,10 @@ describe('Try to access admin pages with non-admin user', function(){
 
   this.timeout( config.get_execution_timeout() );
 
-  var non_admin_user_email, driver;
+  var non_admin_user_email,
+      driver = new webdriver.Builder()
+        .withCapabilities(webdriver.Capabilities.phantomjs())
+        .build();;
 
   var check_pathes = function(driver, reachable){
 

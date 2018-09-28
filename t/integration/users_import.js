@@ -58,7 +58,10 @@ describe('Bulk import of users', function(){
       url    : application_host + 'users/import/',
       driver : driver,
     })
-    .then(function(){ done() });
+    .then(data => { 
+      driver = data.driver;
+      done();
+    });
   });
 
   it('Create test .CSV file for the test', function(done){
@@ -117,22 +120,25 @@ describe('Bulk import of users', function(){
     // Open users page
     .then(ids => {
       users_ids = ids;
-
       return open_page_func({
         url    : application_host + 'users/',
         driver : driver,
       });
+    }).then(data => {
+      driver = data.driver;
     })
 
     // Ensure that IDs of newly added users are on th Users page
-    .then(() => Promise.map(users_ids, id => driver
+    .then(() => {
+      driver.wait(until.elementLocated(By.css('tbody')), 1000);
+      return Promise.map(users_ids, (id) => driver
       .findElement(By.css('[data-vpp-user-row="'+id+'"]'))
       .then(el => {
         expect(el, 'Ensure that newly added user ID '+id+' exists on Users page')
           .to.exists;
         return Promise.resolve();
       })
-    ))
+    )})
 
     .then(() => done());
   });

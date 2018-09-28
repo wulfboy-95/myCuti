@@ -1,7 +1,9 @@
 'use strict';
 
 var webdriver = require('selenium-webdriver'),
-    Promise   = require("bluebird");
+    Promise   = require("bluebird"),
+    until     = webdriver.until,
+    By        = webdriver.By;
 
 module.exports = Promise.promisify( function(args, callback){
 

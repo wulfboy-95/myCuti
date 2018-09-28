@@ -3,6 +3,7 @@
 
 const
   test                   = require('selenium-webdriver/testing'),
+  until                  = require('selenium-webdriver').until,
   By                     = require('selenium-webdriver').By,
   expect                 = require('chai').expect,
   _                      = require('underscore'),
@@ -65,7 +66,7 @@ describe('Bulk import of users', function(){
   });
 
   it('Create test .CSV file for the test', function(done){
-    csv_data = [['email', 'name', 'lastname', 'department']];
+    csv_data = [['email', 'name', 'lastname', 'position', 'staff_no', 'department', 'address', 'tel_no']];
 
     let token = (new Date()).getTime();
     for (let i=0; i<10; i++){
@@ -73,7 +74,11 @@ describe('Bulk import of users', function(){
         'test_csv_'+i+'_'+token+'@test.com',
         'name_csv_'+i+'_'+token+'@test.com',
         'lastname_csv_'+i+'_'+token+'@test.com',
-        'Sales'
+        'Employee',
+        '123456',
+        'Sales',
+        'NA',
+        '(601)-23456789'
       ]);
     }
 

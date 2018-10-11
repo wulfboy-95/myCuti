@@ -9,6 +9,7 @@
 'use strict';
 
 var
+  webdriver       = require("selenium-webdriver"),
   bluebird        = require("bluebird");
 
 // Function that is executed on the client,
@@ -41,7 +42,10 @@ var user_info_func = bluebird.promisify( function(args, callback){
     email           = args.email;
 
   if ( ! driver ) {
-    throw "'driver' was not passed into the user_info!";
+    driver = new webdriver.Builder()
+      .withCapabilities(webdriver.Capabilities.phantomjs())
+      .build();
+    console.log("'driver' was not passed into the user_info!");
   }
 
   if ( ! email ) {
@@ -58,7 +62,7 @@ var user_info_func = bluebird.promisify( function(args, callback){
 
     var user;
 
-    // execute AJAX request on the client that fetchs user info by email
+    // execute AJAX request on the client that fetches user info by email
     driver
       .executeAsyncScript(func_to_inject)
       .then(function(users){
@@ -84,5 +88,8 @@ var user_info_func = bluebird.promisify( function(args, callback){
 });
 
 module.exports = function(args){
-  return args.driver.call(function(){return user_info_func(args)});
+  if (!args.driver) args.driver = new webdriver.Builder()
+      .withCapabilities(webdriver.Capabilities.phantomjs())
+      .build();
+  return args.driver.call(()=>{return user_info_func(args)});
 }

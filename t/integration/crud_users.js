@@ -65,6 +65,7 @@ describe('CRUD for users', function(){
     })
     .then(function(data){
       email_admin = data.new_user_email;
+      driver = data.driver;
       done();
     });
   });
@@ -76,6 +77,7 @@ describe('CRUD for users', function(){
     })
     .then(function(data){
       email_manager = data.new_user_email;
+      driver = data.driver;
       done();
     });
   });
@@ -87,6 +89,7 @@ describe('CRUD for users', function(){
     })
     .then(function(data){
       email_employee = data.new_user_email;
+      driver = data.driver;
       done();
     });
   });
@@ -96,7 +99,10 @@ describe('CRUD for users', function(){
       url    : application_host + 'settings/departments/',
       driver : driver,
     })
-    .then(function(){ done() });
+    .then(function(data){ 
+      driver = data.driver;
+      done()
+    });
   });
 
   it("Get the Admin, Manager and Employee IDs", function(done){

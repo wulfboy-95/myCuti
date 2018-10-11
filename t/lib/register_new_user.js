@@ -27,7 +27,7 @@ var register_new_user_func = Promise.promisify( function(args, callback){
 
   var capabilities = process.env.USE_CHROME ? 'chrome' : 'phantomjs';
 
-  // Instantiate new driver object if it not provided as paramater
+  // Instantiate new driver object if it not provided as parameter
   var driver = args.driver || new webdriver.Builder()
       .withCapabilities(webdriver.Capabilities[capabilities]())
       .build();
@@ -41,7 +41,7 @@ var register_new_user_func = Promise.promisify( function(args, callback){
   // Go to front page
   driver.get( application_host );
 
-  driver.wait(until.elementLocated(By.css('h1')), 1000);
+  //driver.wait(until.elementLocated(By.css('a')), 1000);
 
   // Check if there is a registration link
   driver.findElement( By.css('a[href="/register/"]') )
@@ -90,6 +90,12 @@ var register_new_user_func = Promise.promisify( function(args, callback){
     },{
       selector : 'input[name="password_confirmed"]',
       value    : '123456',
+    },{
+      selector : 'input[name="position"]',
+      value    : 'Employee',
+    },{
+      selector : 'input[name="staff_no"]',
+      value    : '12345',
     },{
       selector        : 'select[name="country"]',
       option_selector : 'option[value="ZZ"]',

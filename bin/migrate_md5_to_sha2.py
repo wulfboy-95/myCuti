@@ -23,7 +23,6 @@ class User:
         md5 = hashlib.md5()
         md5.update(pw)
         hash_md5 = md5.hexdigest()
-        print(hash_md5)
         del(password)
         del(pw)
         sys.stdout.write("Password for ")
@@ -47,7 +46,6 @@ if __name__ == "__main__":
     config_file = open("../config/app.json","r")
     config = json.load(config_file)
     salt = config["crypto_secret"]
-    print(salt)
     
     conn = sqlite3.connect("../db.development.sqlite")
     c = conn.cursor()

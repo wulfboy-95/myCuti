@@ -62,6 +62,30 @@ module.exports = Promise.promisify(function(args, callback){
             selector : add_new_user_form_id+' input[name="password_confirm"]',
             value    : '123456',
         },{
+            selector : add_new_user_form_id+' input[name="position"]',
+            value    : 'Employee'
+        },{
+            selector : add_new_user_form_id+' input[name="staff_no"]',
+            value    : '123456',
+        },{
+            selector : add_new_user_form_id+' input[id="address_ln1"]',
+            value    : 'Line 1'
+        },{
+            selector : add_new_user_form_id+' input[id="address_ln2"]',
+            value    : 'Line 2'
+        },{
+            selector : add_new_user_form_id+' input[id="postcode"]',
+            value    : '12345'
+        },{
+            selector : add_new_user_form_id+' input[id="city"]',
+            value    : 'City'
+        },{
+            selector : add_new_user_form_id+' input[id="state"]',
+            value    : 'State'
+        },{
+            selector : add_new_user_form_id+' input[name="tel_no"]',
+            value    : '60123456789'
+        },{
             selector : add_new_user_form_id+' input[name="start_date"]',
             value : '2015-06-01',
         },

@@ -42,6 +42,9 @@ describe('Check validation for leave request', function(){
     var valid_params = {
         user           : '1',
         leave_type     : '1',
+        duty_detail    : '',
+        duty_replacer  : NaN,
+        duty_status    : undefined,
         from_date      : '2015-05-10',
         from_date_part : '1',
         to_date        : '2015-05-12',

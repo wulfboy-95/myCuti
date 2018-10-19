@@ -3,6 +3,7 @@
 
 const
   test                   = require('selenium-webdriver/testing'),
+  until                  = require('selenium-webdriver').until,
   By                     = require('selenium-webdriver').By,
   expect                 = require('chai').expect,
   _                      = require('underscore'),
@@ -58,11 +59,14 @@ describe('Bulk import of users', function(){
       url    : application_host + 'users/import/',
       driver : driver,
     })
-    .then(function(){ done() });
+    .then(data => { 
+      driver = data.driver;
+      done();
+    });
   });
 
   it('Create test .CSV file for the test', function(done){
-    csv_data = [['email', 'name', 'lastname', 'department']];
+    csv_data = [['email', 'name', 'lastname', 'position', 'staff_no', 'department', 'address', 'tel_no']];
 
     let token = (new Date()).getTime();
     for (let i=0; i<10; i++){
@@ -70,7 +74,11 @@ describe('Bulk import of users', function(){
         'test_csv_'+i+'_'+token+'@test.com',
         'name_csv_'+i+'_'+token+'@test.com',
         'lastname_csv_'+i+'_'+token+'@test.com',
-        'Sales'
+        'Employee',
+        '123456',
+        'Sales',
+        'NA',
+        '(601)-23456789'
       ]);
     }
 
@@ -117,22 +125,25 @@ describe('Bulk import of users', function(){
     // Open users page
     .then(ids => {
       users_ids = ids;
-
       return open_page_func({
         url    : application_host + 'users/',
         driver : driver,
       });
+    }).then(data => {
+      driver = data.driver;
     })
 
     // Ensure that IDs of newly added users are on th Users page
-    .then(() => Promise.map(users_ids, id => driver
+    .then(() => {
+      driver.wait(until.elementLocated(By.css('tbody')), 1000);
+      return Promise.map(users_ids, (id) => driver
       .findElement(By.css('[data-vpp-user-row="'+id+'"]'))
       .then(el => {
         expect(el, 'Ensure that newly added user ID '+id+' exists on Users page')
           .to.exists;
         return Promise.resolve();
       })
-    ))
+    )})
 
     .then(() => done());
   });
